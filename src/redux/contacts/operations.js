@@ -1,8 +1,6 @@
-import axios from "axios";
-import { handleAsyncThunk } from "../helpers/operationsHelper";
+import axios from "../axios";
+import { handleAsyncThunk } from "../helpers/thunkHelper";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
@@ -21,6 +19,6 @@ export const addContact = createAsyncThunk(
 export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   (contactsId, thunkAPI) => {
-    return handleAsyncThunk(axios.delete(`/contacts/${contactsId}`), thunkAPI);
+    return handleAsyncThunk(axios.delete(`/contacts/${contactId}`), thunkAPI);
   }
 );
