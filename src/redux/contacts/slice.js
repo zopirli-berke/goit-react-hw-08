@@ -5,6 +5,7 @@ import {
   handleFulfilled,
   handleRejected,
 } from "../helpers/sliceHelper";
+import { logOut } from "../auth/operations";
 
 // SLICE
 const contactsSlice = createSlice({
@@ -27,6 +28,11 @@ const contactsSlice = createSlice({
         state.contacts = state.contacts.filter(
           (contact) => contact.id !== action.payload.id
         );
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.contacts = [];
+        state.isLoading = false;
+        state.error = null;
       })
       .addMatcher((action) => action.type.endsWith(`/pending`), handlePending)
       .addMatcher(
