@@ -25,7 +25,7 @@ function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Kullanıcı bilgileri yenileniyor...</b>
+    <b>Loading...</b>
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>

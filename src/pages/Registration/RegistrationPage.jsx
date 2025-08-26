@@ -1,13 +1,10 @@
-// İleride buraya form bileşeninizi import edeceksiniz.
-// import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
+import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
+import css from "./RegistrationPage.module.css";
 
-const RegistrationPage = () => {
+export default function RegistrationPage() {
   return (
-    <div>
-      <h1>Kayıt Ol Sayfası</h1>
-      {/* <RegistrationForm /> */}
+    <div className={css.RegistrationPage}>
+      <RegistrationForm />
     </div>
   );
-};
-
-export default RegistrationPage;
+}
