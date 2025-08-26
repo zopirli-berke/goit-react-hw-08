@@ -51,3 +51,7 @@ input {
 textarea {
   resize: none;
 }
+
+body {
+  margin: 0;
+}
