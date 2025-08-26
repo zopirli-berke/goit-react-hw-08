@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import { register } from "../../redux/auth/operations";
 import { useId } from "react";
 import css from "./RegistrationForm.module.css";
+import { toast } from "react-hot-toast";
 
 const RegistrationSchema = Yup.object().shape({
   name: Yup.string()
@@ -30,9 +31,21 @@ export default function RegistrationForm() {
   const emailFieldId = useId();
   const passwordFieldId = useId();
 
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
-    actions.resetForm();
+  const handleSubmit = async (values, actions) => {
+    try {
+      await dispatch(register(values)).unwrap();
+      toast.success("Registration successful!");
+      actions.resetForm();
+    } catch (error) {
+      const errorMessage =
+        error.message || "An error occurred. Please try again.";
+
+      if (errorMessage.includes("Email in use")) {
+        toast.error("This email is already registered.");
+      } else {
+        toast.error(errorMessage);
+      }
+    }
   };
 
   return (
